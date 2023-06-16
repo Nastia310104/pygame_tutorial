@@ -12,7 +12,16 @@ class Enemy(character):
         self.standing = False
     
     def draw(self, window):
+        self.move()
+        if self.vel > 0:
+            window.blit(self.walkRight[self.walkCount//3], (self.x,self.y))
+            self.walkCount += 1
+        else:
+            window.blit(self.walkLeft[self.walkCount//3], (self.x,self.y))
+            self.walkCount += 1
+
         return super().draw(window)
+
             
     def move(self):
         if self.vel > 0:
@@ -20,10 +29,12 @@ class Enemy(character):
                 self.x += self.vel
             else:
                 self.vel = self.vel * -1
+                self.x += self.vel
                 self.walkCount = 0
         else:
             if self.x - self.vel > self.path[0]:
                 self.x += self.vel
             else:
                 self.vel = self.vel * -1
+                self.x += self.vel
                 self.walkCount = 0

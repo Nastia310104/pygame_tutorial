@@ -13,7 +13,6 @@ class character(object):
 
 
     def draw(self, window):
-
         if self.walkCount + 1 >= self.imageCount:
             self.walkCount = 0
 
