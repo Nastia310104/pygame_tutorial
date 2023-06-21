@@ -3,10 +3,9 @@ import pygame
 from Classes import Projectile
 from Controllers import ProjectileController
 
-def start(player, keys, bullets):
+def start(player, keys):
     move(player, keys)
     jump(player, keys)
-    shoot(player, keys, bullets)
 
 def move(player, keys):
     if keys[pygame.K_LEFT] and player.x > player.vel:
@@ -32,16 +31,12 @@ def jump(player, keys):
             player.isJump = False
             player.jumpCount = 10
 
+def shoot(player, bullets):
+    if player.left: 
+        facind = -1
+    else:
+        facind = 1
+
+    if len(bullets) < 5:
+        bullets.append(Projectile.Projectile(round(player.x + player.width // 2), round(player.y + player.height // 2), 5, (0, 0, 255), facind))
     
-
-def shoot(player, keys, bullets):
-    ProjectileController.bulletShoot(bullets)
-
-    if keys[pygame.K_SPACE]:
-        if player.left: 
-            facind = -1
-        else:
-            facind = 1
-
-        if len(bullets) < 5:
-            bullets.append(Projectile.Projectile(round(player.x + player.width // 2), round(player.y + player.height // 2), 5, (0, 0, 255), facind))

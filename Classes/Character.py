@@ -1,3 +1,5 @@
+import pygame
+
 class character(object):
     def __init__(self, x, y ,width, height, vel, imageCount):
         self.x = x
@@ -10,6 +12,7 @@ class character(object):
         self.right = False
         self.standing = True
         self.imageCount = imageCount
+        self.hitbox = (self.x + 17, self.y + 2, 29, 59)
 
 
     def draw(self, window):
@@ -28,6 +31,9 @@ class character(object):
                 window.blit(self.walkRight[0], (self.x, self.y))
             else:
                 window.blit(self.walkLeft[0], (self.x, self.y))
+
+        self.hitbox = (self.x + 17, self.y + 2, 29, 59)
+        pygame.draw.rect(window, (0, 150, 150), self.hitbox, 2)
 
     def move(self):
         pass

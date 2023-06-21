@@ -38,3 +38,6 @@ class Enemy(character):
                 self.vel = self.vel * -1
                 self.x += self.vel
                 self.walkCount = 0
+
+    def die(self):
+        print("You shoot me, bitch")
